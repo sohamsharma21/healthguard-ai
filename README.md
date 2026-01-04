@@ -41,9 +41,11 @@ HealthGuard AI:
    pip install streamlit pandas
 App run karo:
 
-```bash
-streamlit run streamlit_app.py
+   ```bash
+   streamlit run streamlit_app.py
+
 Project Status
+
 Prototype working with sample data (200 patient records)
 
 Core quality checks implemented
