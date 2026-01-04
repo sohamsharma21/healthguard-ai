@@ -41,7 +41,7 @@ HealthGuard AI:
    pip install streamlit pandas
 App run karo:
 
-   ```bash
+   bash
    streamlit run streamlit_app.py
 
 Project Status
