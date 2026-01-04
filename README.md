@@ -41,12 +41,12 @@ HealthGuard AI:
    pip install streamlit pandas
 App run karo:
 
-bash
+```bash
 streamlit run streamlit_app.py
 Project Status
 Prototype working with sample data (200 patient records)
 
-Core quality checks implement ho chuke hain
+Core quality checks implemented
 
 Future work: real hospital integration, alerts, mobile view, advanced ML models
 
