@@ -1,3 +1,71 @@
+import streamlit as st
+import pandas as pd
+
+# Try to connect to Snowflake
+try:
+    from snowflake.snowpark.context import get_active_session
+    session = get_active_session()
+    DEMO_MODE = False
+except:
+    # Running outside Snowflake - use demo data
+    DEMO_MODE = True
+    st.warning("⚠️ Running in DEMO MODE with sample data")
+
+# Page config
+st.set_page_config(page_title="HealthGuard AI", page_icon="🏥", layout="wide")
+
+if DEMO_MODE:
+    # Demo data for Streamlit Cloud
+    st.title("🏥 HealthGuard AI - Demo Version")
+    st.subheader("Healthcare Data Quality Monitoring System")
+    st.info("This is a demo version with sample data. Full version runs in Snowflake.")
+    
+    # Create sample dashboard data
+    demo_dashboard = pd.DataFrame({
+        'METRIC': [
+            'Total Patient Records',
+            'Records with Missing Data',
+            'Age Anomalies',
+            'Blood Pressure Anomalies',
+            'Heart Rate Anomalies',
+            'Duplicate Patient Names',
+            'Outdated Records (>1 year)'
+        ],
+        'COUNT': [200, 45, 3, 2, 2, 12, 15],
+        'PERCENTAGE': ['100%', '22.5%', '1.5%', '1.0%', '1.0%', '6.0%', '7.5%']
+    })
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Total Records", 200)
+    with col2:
+        st.metric("Incomplete Records", 45, delta="-45 issues")
+    with col3:
+        st.metric("Critical Anomalies", 7, delta="Urgent")
+    
+    st.markdown("---")
+    st.subheader("📊 Data Quality Dashboard")
+    st.dataframe(demo_dashboard, use_container_width=True)
+    
+    st.bar_chart(demo_dashboard.set_index('METRIC')['COUNT'])
+    
+    st.markdown("---")
+    st.info("""
+    **📺 Full Working Version Available:**
+    - Runs entirely in Snowflake with real-time processing
+    - 8 SQL views for comprehensive quality checks
+    - ML-powered anomaly detection (Z-score analysis)
+    - Interactive dashboard with 6 pages
+    
+    **🎥 Watch Full Demo Video:** [Insert your Loom/YouTube link]
+    
+    **💻 GitHub Repository:** https://github.com/your-username/healthguard-ai
+    """)
+    
+else:
+    # Original full Snowflake code
+    # [Paste your complete original Streamlit code here]
+    pass
 # Import snowflake modules
 from snowflake.snowpark.context import get_active_session
 import streamlit as st
